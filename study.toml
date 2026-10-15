@@ -1,0 +1,28 @@
+# Study-wide settings. Everything that could change a result lives here or in
+# repos.toml, so a run can be reproduced from these two files plus the task files.
+
+[agent]
+name = "claude-code"
+# Pin the Claude Code version after the pilot ("stable" is fine for the first run;
+# each trial records the exact version it used).
+version = "stable"
+# Start with the alias, then pin the full model ID that the pilot transcripts report.
+model = "sonnet"
+max_turns = 60
+timeout_minutes = 30
+
+[design]
+arms = ["with", "without"]   # with = repo as-is; without = all context files removed
+attempts = 3                 # pilot: 3 per arm; core study: 5 (see ANALYSIS_PLAN.md)
+seed = 20261014              # fixes the trial order, so reruns are comparable
+
+[sandbox]
+cpus = 2
+memory = "4g"
+# "anthropic" = the container can only reach Anthropic's API during a trial.
+# "open" = no firewall (use only for debugging builds).
+egress = "anthropic"
+
+[paths]
+data = "data"                # tasks, runs and reports land here (gitignored)
+prompt_template = "prompts/task.txt"

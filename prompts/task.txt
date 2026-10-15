@@ -1,0 +1,7 @@
+You are working in the repository in the current directory. Resolve the task below by changing the code.
+
+<task>
+{prompt}
+</task>
+
+Work autonomously: there is no human available to answer questions. When you are done, stop.

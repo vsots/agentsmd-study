@@ -1,0 +1,130 @@
+# The 10 study repos plus alternates. Fill in `install` and `test_cmd` while you
+# set each one up, and pin `sha` once its image builds and validation passes.
+#
+# test_cmd placeholders: {tests} = space-separated test files, {junit} = report path.
+# Globs support **. A file counts as a test if it matches test_globs, as source
+# if it matches src_globs and not exclude_globs.
+
+[defaults]
+python = "3.12"
+since = "2025-10-01"          # mine merged changes on the default branch from this date
+max_src_files = 4             # keep tasks small enough to judge
+max_changed_lines = 400
+test_globs = ["**/tests/**", "**/test_*.py", "**/*_test.py", "**/conftest.py"]
+src_globs = ["**/*.py"]
+exclude_globs = ["doc/**", "docs/**", "examples/**", "benchmarks/**", ".github/**"]
+test_cmd = "python -m pytest -q -p no:cacheprovider --junitxml={junit} {tests}"
+pythonpath = ""               # extra PYTHONPATH for the local executor, e.g. "src"
+
+# ---------------------------------------------------------------- pilot
+
+[[repo]]
+name = "networkx"
+url = "https://github.com/networkx/networkx"
+sha = ""
+install = "pip install -e '.[default,test]'"
+status = "pilot"
+notes = "Pure Python, fast tests. AGENTS.md (1.8 KB) is mostly contribution policy, a useful low-information case."
+
+# ---------------------------------------------------------------- core study
+
+[[repo]]
+name = "wagtail"
+url = "https://github.com/wagtail/wagtail"
+sha = ""
+install = ""                  # TODO: verify (likely pip install -e '.[testing]')
+test_cmd = ""                 # TODO: uses Django's test runner (python runtests.py), not pytest; needs a JUnit reporter
+status = "todo"
+notes = "Django CMS. AGENTS.md (2.2 KB): PR rules plus Django pitfalls."
+
+[[repo]]
+name = "pdm"
+url = "https://github.com/pdm-project/pdm"
+sha = ""
+install = ""                  # TODO: verify
+status = "todo"
+notes = "Also used in the July 2026 288-run study, so it doubles as a replication check. AGENTS.md 3.6 KB."
+
+[[repo]]
+name = "aiohttp"
+url = "https://github.com/aio-libs/aiohttp"
+sha = ""
+install = ""                  # TODO: verify; C extensions are optional (AIOHTTP_NO_EXTENSIONS=1)
+status = "todo"
+notes = "AGENTS.md 3.7 KB: build, test, lint, threat model. Its CLAUDE.md imports files from the maintainer's home dir."
+
+[[repo]]
+name = "scrapy"
+url = "https://github.com/scrapy/scrapy"
+sha = ""
+install = ""                  # TODO: verify
+status = "todo"
+notes = "AGENTS.md 4.9 KB: code, tests, docs and git conventions."
+
+[[repo]]
+name = "falcon"
+url = "https://github.com/falconry/falcon"
+sha = ""
+install = ""                  # TODO: verify
+status = "todo"
+notes = "AGENTS.md 6.1 KB: repo map, change rules, verification steps."
+
+[[repo]]
+name = "pylint"
+url = "https://github.com/pylint-dev/pylint"
+sha = ""
+install = ""                  # TODO: verify
+status = "todo"
+notes = "AGENTS.md 6.6 KB: domain pitfalls (astroid inference)."
+
+[[repo]]
+name = "mcp-python-sdk"
+url = "https://github.com/modelcontextprotocol/python-sdk"
+sha = ""
+install = ""                  # TODO: verify (uv-based)
+pythonpath = "src"
+status = "todo"
+notes = "AGENTS.md 8.7 KB: package management, testing, typing rules."
+
+[[repo]]
+name = "pydantic-ai"
+url = "https://github.com/pydantic/pydantic-ai"
+sha = ""
+install = ""                  # TODO: verify (uv workspace)
+status = "todo"
+notes = "AGENTS.md 17.3 KB: philosophy, workflow, coding guidelines."
+
+[[repo]]
+name = "openai-agents-python"
+url = "https://github.com/openai/openai-agents-python"
+sha = ""
+install = ""                  # TODO: verify (uv-based)
+pythonpath = "src"
+status = "todo"
+notes = "AGENTS.md 38.2 KB: the longest file in the set, a test of the 'bloat' question."
+
+# ---------------------------------------------------------------- alternates
+
+[[repo]]
+name = "fastmcp"
+url = "https://github.com/PrefectHQ/fastmcp"
+sha = ""
+install = ""
+status = "alternate"
+notes = "AGENTS.md 19.2 KB."
+
+[[repo]]
+name = "langchain-core"
+url = "https://github.com/langchain-ai/langchain"
+sha = ""
+install = ""
+status = "alternate"
+notes = "AGENTS.md 20.6 KB; monorepo, limit tasks to libs/core."
+
+[[repo]]
+name = "sympy"
+url = "https://github.com/sympy/sympy"
+sha = ""
+install = ""
+status = "alternate"
+notes = "AGENTS.md 2.5 KB; pure Python."
