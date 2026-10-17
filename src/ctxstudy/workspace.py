@@ -28,7 +28,7 @@ CONTEXT_EXPR = (
 )
 ALWAYS_REMOVE = [".claude/settings.json", ".claude/settings.local.json", ".mcp.json"]
 
-
+# Returns small shell script that runs inside trial sandbox to set up one treatment arm.
 def arm_script(arm: str) -> str:
     common = "rm -f " + " ".join(ALWAYS_REMOVE)
     if arm == "without":
@@ -41,7 +41,7 @@ def arm_script(arm: str) -> str:
     raise ValueError(f"unknown arm: {arm}")
 
 
-FRESH_HISTORY = (
+FRESH_HISTORY = ( # Replaces git history with single fresh commit
     "rm -rf .git && git init -q && git add -A && "
     "git -c user.name=ctxstudy -c user.email=ctxstudy@localhost commit -q --no-verify -m 'Task snapshot'"
 )
