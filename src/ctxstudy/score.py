@@ -32,7 +32,7 @@ def parse_junit(xml_text: str) -> dict[str, str]:
     for case in root.iter("testcase"):
         test_id = f"{case.get('classname', '')}::{case.get('name', '')}"
         outcome = "passed"
-        for child in case:
+        for child in case: # Change so it doesn't stop at failing so we know how many passed, failed, errored?
             if child.tag in ("failure", "error"):
                 outcome = "failed"
                 break

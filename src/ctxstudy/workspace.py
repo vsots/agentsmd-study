@@ -28,8 +28,9 @@ CONTEXT_EXPR = (
 )
 ALWAYS_REMOVE = [".claude/settings.json", ".claude/settings.local.json", ".mcp.json"]
 
-# Returns small shell script that runs inside trial sandbox to set up one treatment arm.
+
 def arm_script(arm: str) -> str:
+    """Returns small shell script that runs inside trial sandbox to set up one treatment arm."""
     common = "rm -f " + " ".join(ALWAYS_REMOVE)
     if arm == "without":
         return (f"{common}\n"
