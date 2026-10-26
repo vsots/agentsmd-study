@@ -7,7 +7,7 @@ name = "claude-code"
 # each trial records the exact version it used).
 version = "stable"
 # Start with the alias, then pin the full model ID that the pilot transcripts report.
-model = "opus"
+model = "sonnet"
 max_turns = 60
 timeout_minutes = 30
 
