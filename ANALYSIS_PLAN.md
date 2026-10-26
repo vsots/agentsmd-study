@@ -46,6 +46,7 @@
 - Infrastructure errors (container, network, rate limits) are rerun once; if they repeat, the trial is excluded and counted in the report.
 - Tasks that fail validation never enter the sample.
 - No trial is dropped for any other reason. All results are published, including null and negative ones.
+- Pilot trials are excluded from the main results. networkx is rerun in the main study with pinned settings.
 
 ## Deviations
 
